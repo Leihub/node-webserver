@@ -1,19 +1,21 @@
 var express = require('express');
 var router = express.Router();
+const db = require('./db')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Hello world' });
+      res.render('index',{title:'adasd'})
 });
 router.get('/userlist',function(req,res,next){
-  // var db = req.db
-  // var collection = db.get('usercollection')
-  // collection.find({},{},function(){
-  //   res.render('userlist',{
-  //     'userlist':docs
-  //   })
-  // })
-    res.render('index', { title: 'Hello world' });
+  db.Article.find(null,function(err,doc){
+    if(err){
+      console.log(err)
+    }else{
+      res.send(JSON.stringify(doc))
+      //res.render('index', { title: 'Hello world' });
+    }
+  })
+    
 })
 
 module.exports = router;

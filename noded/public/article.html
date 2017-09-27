@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            text-align: center
+        }
+
+        .title {
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="da">
+        <p class="title"></p>
+        <p class="date"></p>
+        <p class="content"></p>
+    </div>
+    <div class="da">
+        <p class="title"></p>
+        <p class="date"></p>
+        <p class="content"></p>
+    </div>
+    <script src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js'></script>
+    <script>
+        $.ajax({
+            url: '/userlist',
+            type: 'GET',
+            // dataType:'jsonp',
+            // jsonp:'callback',
+            // jsonpCallback:'logdata',
+            success: function (data) {
+                var data = JSON.parse(data)
+                var log = console.log.bind(console)
+                console.log(data)
+                var title = document.querySelectorAll('.title')
+                var date = document.querySelectorAll('.date')
+                var content = document.querySelectorAll('.content')
+                if (data instanceof Array) {
+                    log("yes")
+                } else {
+                    log("no")
+                }
+                // for(var i =0 ;i<data.length;i++){
+                //     log(i.title)
+                // }
+                log(date[0])
+
+            }
+        })
+    </script>
+</body>
+
+</html>
