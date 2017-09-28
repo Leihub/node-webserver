@@ -38,9 +38,6 @@
         $.ajax({
             url: '/userlist',
             type: 'GET',
-            // dataType:'jsonp',
-            // jsonp:'callback',
-            // jsonpCallback:'logdata',
             success: function (data) {
                 var data = JSON.parse(data)
                 var log = console.log.bind(console)
@@ -53,9 +50,6 @@
                 } else {
                     log("no")
                 }
-                // for(var i =0 ;i<data.length;i++){
-                //     log(i.title)
-                // }
                 log(date[0])
 
             }
