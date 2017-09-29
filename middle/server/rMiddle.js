@@ -54,4 +54,52 @@ router.get('*', (req, res) => {
         res.status(500).end();
     });  
 })
+router.post('*',(req,res)=>{
+    var reqUrl = serverDomain + req.url;
+    var reqContentType = req.headers['content-type'];
+    var reqBody = req.body;
+    // 根据 请求的 content-type 判断用哪种格式化方式
+    var reqData = reqContentType.indexOf('json') !== -1 ? JSON.stringify(reqBody) : querystring.stringify(reqBody);
+    var postOpt = {
+        host: serverDomainHost,
+        port: serverDomainPort,
+        path: req.url,
+        method: 'POST',
+        headers: {
+            'Content-Type': reqContentType
+        }
+    };
+    var sreq = http.request(postOpt, (sres) => {
+        var body = '';
+        var error;
+        if (sres.statusCode !== 200) {
+            error = new Error(`Request Failed.\n` + `Status Code: ${sres.statusCode}`)
+        }
+        if (error) {
+            console.log(error.message);
+            sres.resume();
+            res.status(500).end();
+            return;
+        }
+        sres.on('data', (data) => {
+            body += data;
+        })
+        .on('end', () => {
+            try {
+                var parsedData = JSON.parse(body);
+                res.json(parsedData);
+            } catch (e) {
+                console.log(e.message);
+                res.status(500).send(e.message);
+            }
+        })
+        .on('error', () => {
+            console.log('[ERROR] when req url:', reqUrl, reqData);
+            res.status(500).send('error');
+        })
+    })
+    sreq.write(reqData);
+    sreq.end();
+})
+
 module.exports = router;
