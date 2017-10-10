@@ -28,4 +28,8 @@ a{
   text-decoration: none;
   color: #000;
 }
+*{
+  padding: 0;
+  margin: 0;
+}
 </style>

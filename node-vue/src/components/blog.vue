@@ -25,6 +25,9 @@
   .item:first-child {
     margin-top: 0;
   }
+  .title{
+    margin-bottom: 20px;
+  }
 
   .txt {
       text-align:left;
