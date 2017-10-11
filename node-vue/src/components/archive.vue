@@ -61,6 +61,7 @@
     },
     mounted() {
       console.log(this.$refs.abc.style.display)
+      console.log(this.$store.state.blogslist.blogs[0].content)
     },
     methods: {
       ShowSidebar() {

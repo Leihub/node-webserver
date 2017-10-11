@@ -32,15 +32,16 @@
     data() {
       return {
         user: {
-          name: 'lei',
-          induce: ['前端', 'hexo', '技术'],
-          rizhi: 10,
-          tags: 5,
-          type: 2,
         }
 
       }
+    },
+    computed:{
+      user(){
+        return this.$store.getters.user
+      }
     }
+
 
   }
 

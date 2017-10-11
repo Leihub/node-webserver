@@ -1,9 +1,13 @@
 <template>
   <div class="blog">
-    <div class="item" v-for="i in blogs">
+    <div class="item" v-for="i in blogslist.blogs">
       <h2 class="title">{{i.title}}</h2>
       <p class="txt">{{i.content}}</p>
-      <div class="btn"><a href=""> <button>阅读全文>></button></a></div>
+      <div class="btn">
+        <a href="">
+          <button>阅读全文>></button>
+        </a>
+      </div>
     </div>
   </div>
 </template>
@@ -25,23 +29,26 @@
   .item:first-child {
     margin-top: 0;
   }
-  .title{
+
+  .title {
     margin-bottom: 20px;
   }
 
   .txt {
-      text-align:left;
+    text-align: left;
   }
-  .btn{
-      margin-top: 50px;
+
+  .btn {
+    margin-top: 50px;
   }
-  .btn button{
-      width: 100px;
-      height: 30px;
-      background: #000; 
-      color: #ffffff;
-      border: none;
-      cursor: pointer;
+
+  .btn button {
+    width: 100px;
+    height: 30px;
+    background: #000;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
   }
 
 </style>
@@ -49,15 +56,13 @@
   export default {
     data() {
       return {
-        blogs: [{
-            title: 'myblog',
-            content: 'this is my first chakshdjashdasdaksdhaksjdh dahsd'
-          },
-          {
-            title: 'myblog',
-            content: 'this is my first chakshdjashdasdaksdhaksjdh dahsd'
-          },
-        ]
+        blogs: []
+      }
+    },
+    computed: {
+      // console.log("sdajsd", this.$store.getters.blogs)
+      blogslist() {
+        return this.$store.getters.blogslist
       }
     }
 
