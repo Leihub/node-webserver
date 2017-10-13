@@ -41,8 +41,6 @@
         return this.$store.getters.user
       }
     }
-
-
   }
 
 </script>
