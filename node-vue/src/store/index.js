@@ -4,7 +4,8 @@ import {actions} from './action'
 import {getters} from './getters'
 import {mutations} from './mutation'
 //import state from './state'
-
+import utils from '../utils/utils'
+console.log(utils)
 
 Vue.use(Vuex)
 
